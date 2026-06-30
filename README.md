@@ -2,6 +2,8 @@
 
 Aplicación web del simulador de crédito vehicular **Compra Inteligente**.
 
+**Repositorio:** https://github.com/FInanzas-Grupo/finanzas-frontend
+
 ## Stack
 
 - React 18
