@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { clientesApi, vehiculosApi, simulacionesApi } from "../api/services.js";
 import { FormField, SelectField } from "../components/FormField.jsx";
+import { CalculoDetalle } from "../components/CalculoDetalle.jsx";
+import { GraficosSimulacion } from "../components/GraficosSimulacion.jsx";
 
 const initial = {
   clienteId: "",
@@ -133,6 +135,17 @@ export function Simulador() {
             <div className="card"><p className="text-sm text-gray-500">TCEA aprox.</p><h3 className="text-xl font-bold">{pct(resumen.tcea)}</h3></div>
           </div>
 
+          <CalculoDetalle
+            flujosDeudor={result.flujosDeudor}
+            tem={result.tem}
+            van={resumen.van}
+            tirMensual={resumen.tirMensual}
+            tirAnual={resumen.tirAnual}
+            tcea={resumen.tcea}
+            tirPasos={result.tirPasos}
+            moneda={result.moneda}
+          />
+
           <div className="card overflow-x-auto">
             <h3 className="text-xl font-bold mb-3">Cronograma de pagos</h3>
             <table className="w-full text-xs">
@@ -159,6 +172,12 @@ export function Simulador() {
               </tbody>
             </table>
           </div>
+
+          <GraficosSimulacion
+            cronograma={rows}
+            moneda={result.moneda}
+            resumen={resumen}
+          />
         </div>
       )}
     </div>

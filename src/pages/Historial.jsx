@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { simulacionesApi } from "../api/services.js";
+import { CalculoDetalle } from "../components/CalculoDetalle.jsx";
+import { GraficosSimulacion } from "../components/GraficosSimulacion.jsx";
 
 function pct(value) {
   if (value === null || value === undefined) return "-";
@@ -149,6 +151,19 @@ export function Historial() {
               </div>
             </div>
 
+            <div className="mb-6">
+              <CalculoDetalle
+                flujosDeudor={d.flujosDeudor}
+                tem={d.tem}
+                van={d.resumen?.van}
+                tirMensual={d.resumen?.tirMensual}
+                tirAnual={d.resumen?.tirAnual}
+                tcea={d.resumen?.tcea}
+                tirPasos={d.tirPasos}
+                moneda={d.moneda}
+              />
+            </div>
+
             <h4 className="text-lg font-bold mb-3">Cronograma de pagos</h4>
 
             {detailLoading ? (
@@ -189,6 +204,14 @@ export function Historial() {
                 </table>
               </div>
             )}
+
+            <div className="mt-6">
+              <GraficosSimulacion
+                cronograma={cronograma}
+                moneda={d.moneda}
+                resumen={d.resumen}
+              />
+            </div>
           </div>
         </div>
       )}
